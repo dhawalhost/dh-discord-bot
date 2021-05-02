@@ -25,20 +25,20 @@ type configStruct struct {
 	BotPrefix string `json:"botprefix"`
 }
 
-func ReadConfig() {
+func ReadConfig() error {
 	fmt.Println("Reading from config file ...")
-	file, err := ioutil.ReadFile("./config.json")
+	file, err := ioutil.ReadFile("./config/config.json")
 
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		// fmt.Println(err.Error())
+		return err
 	}
 	fmt.Println(string(file))
-	err = json.Unmarshal(file, config)
+	err = json.Unmarshal(file, &config)
 
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		// fmt.Println(err.Error())
+		return err
 	}
 	Token = config.Token
 	BotPrefix = config.BotPrefix

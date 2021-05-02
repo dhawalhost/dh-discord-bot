@@ -32,6 +32,9 @@ func Start() {
 	}
 	BotID = u.ID
 	goBot.AddHandler(messageHandler)
+	goBot.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+		InitiateCommonHandler(s, i)
+	})
 	err = goBot.Open()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -45,6 +48,6 @@ func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 	if m.Content == "ping" {
-		res, _ := s.ChannelMessageSend(m.ChannelID, "pong")
+		_, _ = s.ChannelMessageSend(m.ChannelID, "pong")
 	}
 }
