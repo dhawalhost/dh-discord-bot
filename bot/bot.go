@@ -32,9 +32,9 @@ func Start() {
 	}
 	BotID = u.ID
 	goBot.AddHandler(messageHandler)
-	goBot.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
-		InitiateCommonHandler(s, i)
-	})
+	// goBot.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	// 	InitiateCommonHandler(s, i)
+	// })
 	err = goBot.Open()
 	if err != nil {
 		fmt.Println(err.Error())
